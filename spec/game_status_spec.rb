@@ -4,40 +4,48 @@ describe "./lib/game_status.rb" do
   describe 'WIN_COMBINATIONS' do
     it 'defines a constant WIN_COMBINATIONS with arrays for each win combination' do
 
-      if WIN_COMBINATIONS.size == 8
-        array[0,1,2]
-        array[3,4,5]
-        array[6,7,8]
-        array[0,3,6]
-        array[1,4,7]
-        array[2,5,8]
-        array[0,4,8]
-        array[2,4,6]
-        return won
-      else
-        return false
-      expect(WIN_COMBINATIONS).to include_array([0,1,2])
-      expect(WIN_COMBINATIONS).to include_array([3,4,5])
-      expect(WIN_COMBINATIONS).to include_array([6,7,8])
-      expect(WIN_COMBINATIONS).to include_array([0,3,6])
-      expect(WIN_COMBINATIONS).to include_array([1,4,7])
-      expect(WIN_COMBINATIONS).to include_array([2,5,8])
-      expect(WIN_COMBINATIONS).to include_array([0,4,8])
-      expect(WIN_COMBINATIONS).to include_array([6,4,2])
-    end
+       WIN_COMBINATIONS.size = 8
+       WIN_COMBINATIONS[0] = array[0,1,2]
+       WIN_COMBINATIONS[1] = array[3,4,5]
+       WIN_COMBINATIONS[2] = array[6,7,8]
+       WIN_COMBINATIONS[3] = array[0,3,6]
+       WIN_COMBINATIONS[4] = array[1,4,7]
+       WIN_COMBINATIONS[5] = array[2,5,8]
+       WIN_COMBINATIONS[6] = array[0,4,8]
+       WIN_COMBINATIONS[7] = array[2,4,6]
   end
+  win_index1 = WIN_COMBINATIONS[0]
+  win_index2 = WIN_COMBINATIONS[1]
+  win_index3 = WIN_COMBINATIONS[2]
+  
+  position1 = board[win_index1]
+  postion2 = board[win_index2]
+  position3 = board[win_index3]
+  
+  if position1 =="X" && position2 =="X" && position3 =="X"
+    return WIN_COMBINATIONS
+  elsif position1 =="O" && position2 =="O" && position3 =="O"
+    return WIN_COMBINATIONS
+  else
+    return false
+  end
+end
 
   describe "#won?" do
     it 'returns falsey for an empty board' do
      if board == [" ", " ", " ", " ", " ", " ", " ", " ", " "]
         return false
+     else if 
+        
         
       expect(won?(board)).to be_falsey
     end
 
-    it 'returns falsey for a draw' do
-      if board != WIN_COMBINATIONS
-        return false
+    if full?(board) && !won?(board)
+        return true
+    else
+      return false
+      
         
       expect(won?(board)).to be_falsey
     end
